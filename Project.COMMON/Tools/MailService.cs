@@ -10,6 +10,7 @@ namespace Project.COMMON.Tools
 {
     public static class MailService
     {
+        //password and sender must be filled
         public static void Send(string receiver, string password = "", string body = "This is a test message", string subject = "Email test", string sender = "")
         {
             MailAddress senderEmail = new MailAddress(sender);

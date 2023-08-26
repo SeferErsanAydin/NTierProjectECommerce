@@ -27,7 +27,7 @@ namespace Project.DAL.StrategyPattern
 
             #endregion
 
-            #region User
+            #region NormalUsers
 
             for (int i = 0; i < 10; i++)
             {
