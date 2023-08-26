@@ -11,7 +11,7 @@ namespace Project.COMMON.Tools
     public static class MailService
     {
         //password and sender must be filled
-        public static void Send(string receiver, string password = "", string body = "This is a test message", string subject = "Email test", string sender = "")
+        public static void Send(string receiver, string password = "atlkbjteiruyhcww", string body = "This is a test message", string subject = "Email test", string sender = "yzl3157test@gmail.com")
         {
             MailAddress senderEmail = new MailAddress(sender);
             MailAddress receiverEmail = new MailAddress(receiver);
