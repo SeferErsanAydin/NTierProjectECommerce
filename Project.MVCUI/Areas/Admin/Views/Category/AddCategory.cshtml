@@ -8,7 +8,7 @@
     {
         width:300px;
     }
-    </style>>
+    </style>
 
 @using (Html.BeginForm())
             {
@@ -18,6 +18,33 @@
                             <header class="panel-heading">
                                 Add Category Page
                             </header>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label class="col-sm-2">Category Name</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(x => x.Category.CategoryName, new { @class = "form-control width" })
+                                    </div>
+                                </div>
+
+                                <br /><br />
+
+                                <div class="form-group">
+                                    <label class="col-sm-2">Category Description</label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(x => x.Category.Description, new { @class = "form-control width" })
+                                    </div>
+                                </div>
+
+                                <br /><br />
+
+                                <div class="form-group">
+                                    <label class="col-sm-2">Add Category</label>
+                                    <div class="col-sm-10">
+                                        <button class="btn btn-primary">Add</button>
+                                    </div>
+                                </div>
+
+                            </div>
                         </section>
                     </div>
                 </div>

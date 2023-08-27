@@ -1,0 +1,51 @@
+﻿@model CategoryVM
+@{
+    ViewBag.Title = "AddCategory";
+}
+
+<style>
+    .width {
+        width: 300px;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x=> x.Category.ID)
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Update Category Page
+                </header>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-2">Category Name</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Category.CategoryName, new { @class = "form-control width" })
+                        </div>
+                    </div>
+
+                    <br /><br />
+
+                    <div class="form-group">
+                        <label class="col-sm-2">Category Description</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Category.Description, new { @class = "form-control width" })
+                        </div>
+                    </div>
+
+                    <br /><br />
+
+                    <div class="form-group">
+                        <label class="col-sm-2">Update Category</label>
+                        <div class="col-sm-10">
+                            <button class="btn btn-primary">Update</button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+}
