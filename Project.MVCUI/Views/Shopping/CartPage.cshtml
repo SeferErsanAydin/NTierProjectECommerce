@@ -1,0 +1,42 @@
+﻿@model CartPageVM
+@{
+    ViewBag.Title = "CartPage";
+}
+
+<div class="jumbotron">
+    Total Price => @Model.Cart.TotalPrice$ ... To continue for payment  @Html.ActionLink("please click", "ConfirmOrder");
+</div>
+<div class="row product-list">
+
+    @foreach (CartItem item in Model.Cart.MyCart)
+    {
+        <div class="col-md-4">
+            <section class="panel">
+                <div class="pro-img-box">
+                    @*there was a problem with bogus library so nightlife pictures did not show up so i added another boolean to negate that. this should be removed when going live*@
+                    @if (item.ImagePath == null || item.ImagePath == "3" || item.ImagePath.Contains("nightlife"))
+                    {
+                        <img src="/Pictures/19dac596-a811-49d5-ab32-3129fb5e2a82.cpudeneme.png" alt="No image" width="100" height="300" title="@item.Name" />
+                    }
+                    else
+                    {
+                        <img src="@item.ImagePath" alt="No image" width="100" height="300" title="@item.Name" />
+                    }
+
+                    <a href="@Url.Action("DeleteFromCart", new {id=item.ID})" class="adtocart">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </div>
+                <div class="panel-body text-center">
+                    <h4>
+                        <a href="#" class="pro-title" title="@item.Name">
+                            @item.Name x @item.Amount
+                        </a>
+                    </h4>
+                    <p class="price">@item.SubTotal</p>
+                </div>
+            </section>
+        </div>
+    }
+
+</div>

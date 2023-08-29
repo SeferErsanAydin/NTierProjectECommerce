@@ -7,45 +7,45 @@ namespace Project.MVCUI.Models.ShoppingTools
 {
     public class Cart
     {
-        Dictionary<int, CartItem> _sepetim;
+        Dictionary<int, CartItem> _myCart;
         public Cart()
         {
-            _sepetim = new Dictionary<int, CartItem>();
+            _myCart = new Dictionary<int, CartItem>();
         }
         
-        public List<CartItem> Sepetim
+        public List<CartItem> MyCart
         {
             get
             {
-                return _sepetim.Values.ToList();
+                return _myCart.Values.ToList();
             }
         }
 
-        public void SepeteEkle(CartItem item)
+        public void AddCartItem(CartItem item)
         {
-            if (_sepetim.ContainsKey(item.ID))
+            if (_myCart.ContainsKey(item.ID))
             {
-                _sepetim[item.ID].Amount++;
+                _myCart[item.ID].Amount++;
                 return;
             }
-            _sepetim.Add(item.ID, item);
+            _myCart.Add(item.ID, item);
         }
 
-        public void SepettenCikar(int id)
+        public void RemoveCartItem(int id)
         {
-            if (_sepetim[id].Amount>1)
+            if (_myCart[id].Amount>1)
             {
-                _sepetim[id].Amount--;
+                _myCart[id].Amount--;
                 return;
             }
-            _sepetim.Remove(id);
+            _myCart.Remove(id);
         }
 
         public decimal TotalPrice
         {
             get
             {
-                return _sepetim.Sum(x => x.Value.SubTotal);
+                return _myCart.Sum(x => x.Value.SubTotal);
             }
         }
     }

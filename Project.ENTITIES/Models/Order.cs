@@ -12,6 +12,10 @@ namespace Project.ENTITIES.Models
         public int? AppUserID { get; set; }
         public int? ShipperID { get; set; }
 
+        //these properties opened to access order process faster. this type of use it not really optimal, should not be abused.
+        public decimal TotalPrice { get; set; }
+        public string UserName { get; set; }
+        public string Email { get; set; }
 
         //Relational Properties
 
