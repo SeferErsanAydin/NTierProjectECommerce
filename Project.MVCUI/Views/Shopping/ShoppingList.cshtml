@@ -1,7 +1,79 @@
-﻿
+﻿@model PaginationVM
 @{
     ViewBag.Title = "ShoppingList";
 }
 
-<h2>ShoppingList</h2>
+<div class="row">
+    <div class="col-md-3">
+        <section class="panel">
+            <header class="panel-heading">
+                Category
+            </header>
+            <div class="panel-body">
+                <ul class="nav prod-cat">
+                    @foreach (Category item in Model.Categories)
+                    {
+                        <li style="padding-top:30px">@Html.ActionLink(item.CategoryName, "ShoppingList", new { categoryID = item.ID }, new { @class = "btn btn-primary" })</li>
+                    }
+                </ul>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-9">
+        <section class="panel">
+            <div class="panel-body">
+                <div class="pull-right">
+                    <ul class="pagination pagination-sm pro-page-list">
+                        @if (TempData["catID"] != null)
+                        {
+                            <li>
+                                @Html.PagedListPager(Model.PagedProducts, page => Url.Action("ShoppingList", new { page, categoryID = TempData["catID"] }))
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                @Html.PagedListPager(Model.PagedProducts, page => Url.Action("ShoppingList", new { page }))
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <div class="row product-list">
+
+            @foreach (Product item in Model.PagedProducts)
+            {
+                <div class="col-md-4">
+                    <section class="panel">
+                        <div class="pro-img-box">
+                            @*there was a problem with bogus library so nightlife pictures did not show up so i added another boolean to negate that. this should be removed when going live*@
+                            @if (item.ImagePath == null || item.ImagePath == "3" ||item.ImagePath.Contains("nightlife"))
+                            {
+                                <img src="/Pictures/19dac596-a811-49d5-ab32-3129fb5e2a82.cpudeneme.png" alt="No image" width="100" height="300" title="@item.ProductName" />
+                            }
+                            else
+                            {
+                                <img src="@item.ImagePath" alt="No image" width="100" height="300" title="@item.ProductName" />
+                            }
+
+                            <a href="@Url.Action("AddToCart", new {id=item.ID})" class="adtocart">
+                                <i class="icon-shopping-cart"></i>
+                            </a>
+                        </div>
+                        <div class="panel-body text-center">
+                            <h4>
+                                <a href="#" class="pro-title" title="@item.ProductName">
+                                    @item.ProductName
+                                </a>
+                            </h4>
+                            <p class="price">@item.UnitPrice</p>
+                        </div>
+                    </section>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
 
